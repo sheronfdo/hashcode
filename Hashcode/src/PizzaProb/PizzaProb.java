@@ -18,15 +18,25 @@ import java.util.ArrayList;
  */
 public class PizzaProb {
 
-    private int clientsCount = 0;
+    private static int clientsCount = 0;
     private int likePreferences = 0;
     private int dislikePreferences = 0;
-    private String[] likeArray;
-    private String dislikeArray[];
+    private static ArrayList<String> likeArray;
+    private static ArrayList<String> dislikeArray;
     static File myObj;
 
     public static void main(String[] args) {
+        likeArray = new ArrayList<String>();
+        dislikeArray = new ArrayList<String>();
         openFile();
+        likeArray = removeRepeat(likeArray);
+        dislikeArray = removeRepeat(dislikeArray);
+        System.out.println("\n");
+        System.out.println("\n");
+        likeArray = removeDislike(likeArray, dislikeArray);
+        readArray(likeArray);
+        
+
     }
 
     private static void openFile() {
@@ -36,26 +46,20 @@ public class PizzaProb {
             int n = 0;
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                //int i = Integer.parseInt(data);
                 n++;
                 if (n == 1) {
-                    //int clientsCount = Integer.parseInt(data);
-                    System.out.println("Number of customers " + data);
+                    clientsCount = Integer.parseInt(data.split(" ")[0]);
                 } else if (n % 2 == 0) {
-                    String likeArray = new String();
-
-                    likeArray = data;
-
-                    System.out.println("like array " + likeArray);
-
+                    String arr[] = data.split(" ");
+                    for (int i = 1; i < Integer.parseInt(arr[0]) + 1; i++) {
+                        likeArray.add(arr[i]);
+                    }
                 } else if (n % 2 == 1) {
-                    String dislikeArray = new String();
-
-                    dislikeArray = data;
-
-                    System.out.println("Dislike array " + dislikeArray);
+                    String arr[] = data.split(" ");
+                    for (int i = 1; i < Integer.parseInt(arr[0]) + 1; i++) {
+                        dislikeArray.add(arr[i]);
+                    }
                 }
-                //System.out.println(data);
             }
             myReader.close();
         } catch (FileNotFoundException ex) {
@@ -63,4 +67,41 @@ public class PizzaProb {
         }
     }
 
+    private static ArrayList removeRepeat(ArrayList list) {
+        int listSize = list.size();
+        for (int i = 0; i < listSize; i++) {
+            String pref = list.get(i).toString();
+            for (int j = i + 1; j < listSize; j++) {
+                if (pref.equals(list.get(j))) {
+                    list.remove(j);
+                    listSize = list.size();
+                    j--;
+                }
+            }
+        }
+        return list;
+    }
+
+    private static ArrayList removeDislike(ArrayList like, ArrayList dislike) {
+        int likeSize = like.size();
+        int dislikeSize = dislike.size();
+        for (int i = 0; i < dislikeSize; i++) {
+            String dislikePref = dislike.get(i).toString();
+            for (int j = 0; j < likeSize; j++) {
+                if (dislikePref.equals(like.get(j).toString())) {
+                    like.remove(j);
+                    likeSize = like.size();
+                    j--;
+                }
+            }
+        }
+        return like;
+    }
+
+    private static void readArray(ArrayList list) {
+        System.out.print(list.size()+" ");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.print(list.get(i) + " ");
+        }
+    }
 }
