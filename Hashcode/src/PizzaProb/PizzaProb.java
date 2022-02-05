@@ -7,6 +7,9 @@ package PizzaProb;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +20,10 @@ import java.util.ArrayList;
  * @author Jamit
  */
 public class PizzaProb {
+
+    static File file;
+    static FileWriter fileWriter;
+    static PrintWriter printWriter;
 
     private static int clientsCount = 0;
     private int likePreferences = 0;
@@ -31,12 +38,9 @@ public class PizzaProb {
         openFile();
         likeArray = removeRepeat(likeArray);
         dislikeArray = removeRepeat(dislikeArray);
-        System.out.println("\n");
-        System.out.println("\n");
         likeArray = removeDislike(likeArray, dislikeArray);
-        readArray(likeArray);
-        
-
+        //readArray(likeArray);
+        writeOutput(likeArray);
     }
 
     private static void openFile() {
@@ -98,8 +102,23 @@ public class PizzaProb {
         return like;
     }
 
+    private static void writeOutput(ArrayList list) {
+        try {
+            file = new File("Output.txt");
+            fileWriter = new FileWriter(file);
+            printWriter = new PrintWriter(fileWriter);
+            printWriter.print(list.size() + " ");
+            for (int i = 0; i < list.size(); i++) {
+                printWriter.print(list.get(i) + " ");
+            }
+            printWriter.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     private static void readArray(ArrayList list) {
-        System.out.print(list.size()+" ");
+        System.out.print(list.size() + " ");
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
         }
