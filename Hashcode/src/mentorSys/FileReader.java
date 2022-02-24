@@ -26,6 +26,7 @@ public class FileReader {
 
     public static void main(String[] args) {
         readFile();
+        
     }
 
     private static void readFile() {
@@ -70,5 +71,9 @@ public class FileReader {
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    private static void doneProject(){
+        
     }
 }

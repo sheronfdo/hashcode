@@ -22,6 +22,7 @@ public class Project {
         this.scoreAward = scoreAward;
         this.bestBefore = bestBefore;
         this.roleandlevel = skillandlevel;
+        this.numberOfRole = roleandlevel.size();
     }
 
     public String getProjectName() {
