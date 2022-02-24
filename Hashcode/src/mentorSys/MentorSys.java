@@ -5,7 +5,6 @@
  */
 package mentorSys;
 
-import PizzaProb.PizzaProb;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -21,6 +20,7 @@ import java.util.logging.Logger;
  * @author Jamit
  */
 public class MentorSys {
+
     static File file;
     static FileWriter fileWriter;
     static PrintWriter printWriter;
@@ -36,6 +36,7 @@ public class MentorSys {
         likeArray = new ArrayList<String>();
         dislikeArray = new ArrayList<String>();
         openFile();
+        readCondributor();
         likeArray = removeRepeat(likeArray);
         dislikeArray = removeRepeat(dislikeArray);
         likeArray = removeDislike(likeArray, dislikeArray);
@@ -67,7 +68,20 @@ public class MentorSys {
             }
             myReader.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(PizzaProb.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MentorSys.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private static void readCondributor() {
+        try {
+            myObj = new File("a_an_example.in.txt");
+            Scanner myReader = new Scanner(myObj);
+
+            String data = myReader.nextLine();
+            System.out.println(data);
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MentorSys.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
