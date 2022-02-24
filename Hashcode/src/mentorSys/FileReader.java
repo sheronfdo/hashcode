@@ -26,7 +26,7 @@ public class FileReader {
 
     public static void main(String[] args) {
         readFile();
-        
+        doneProject();
     }
 
     private static void readFile() {
@@ -53,11 +53,12 @@ public class FileReader {
             }
             for (int i = 0; i < projectCount; i++) {
                 data = myReader.nextLine();
-                String name = data.split(" ")[0];
-                int numberOfDays = Integer.parseInt(data.split(" ")[1]);
-                int scoreAward = Integer.parseInt(data.split(" ")[2]);
-                int bestBefore = Integer.parseInt(data.split(" ")[3]);
-                int role = Integer.parseInt(data.split(" ")[4]);
+                String[] arr = data.split(" ");
+                String name = arr[0];
+                int numberOfDays = Integer.parseInt(arr[1]);
+                int scoreAward = Integer.parseInt(arr[2]);
+                int bestBefore = Integer.parseInt(arr[3]);
+                int role = Integer.parseInt(arr[4]);
                 ArrayList<SkillAndLevel> roleandlevel = new ArrayList<SkillAndLevel>();
                 for (int j = 0; j < role; j++) {
                     data = myReader.nextLine();
