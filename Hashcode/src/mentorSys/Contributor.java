@@ -23,6 +23,11 @@ public class Contributor {
         this.name = name;
     }
 
+    public Contributor(String name, ArrayList<SkillAndLevel> skillandlevel) {
+        this.name = name;
+        this.skillandlevel = skillandlevel;
+    }
+
     public ArrayList<SkillAndLevel> getSkillandlevel() {
         return skillandlevel;
     }
