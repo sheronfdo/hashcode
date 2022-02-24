@@ -22,7 +22,8 @@ public class FileReader {
     static int contributorCount = 0;
     static int projectCount = 0;
     static ArrayList<Contributor> contributor = new ArrayList<Contributor>();
- 
+    static ArrayList<Project> project = new ArrayList<Project>();
+
     public static void main(String[] args) {
         readFile();
     }
@@ -35,7 +36,7 @@ public class FileReader {
             String data = myReader.nextLine();
             contributorCount = Integer.parseInt(data.split(" ")[0]);
             projectCount = Integer.parseInt(data.split(" ")[1]);
-            
+
             for (int i = 0; i < contributorCount; i++) {
                 data = myReader.nextLine();
                 String name = data.split(" ")[0];
@@ -45,11 +46,26 @@ public class FileReader {
                     data = myReader.nextLine();
                     String skillName = data.split(" ")[0];
                     int skillLevel = Integer.parseInt(data.split(" ")[1]);
-                    skillandlevel.add(new SkillAndLevel(skillName,skillLevel));
+                    skillandlevel.add(new SkillAndLevel(skillName, skillLevel));
                 }
-                contributor.add(new Contributor(name,skillandlevel));
+                contributor.add(new Contributor(name, skillandlevel));
             }
-            
+            for (int i = 0; i < projectCount; i++) {
+                data = myReader.nextLine();
+                String name = data.split(" ")[0];
+                int numberOfDays = Integer.parseInt(data.split(" ")[1]);
+                int scoreAward = Integer.parseInt(data.split(" ")[2]);
+                int bestBefore = Integer.parseInt(data.split(" ")[3]);
+                int role = Integer.parseInt(data.split(" ")[4]);
+                ArrayList<SkillAndLevel> roleandlevel = new ArrayList<SkillAndLevel>();
+                for (int j = 0; j < role; j++) {
+                    data = myReader.nextLine();
+                    String skillName = data.split(" ")[0];
+                    int skillLevel = Integer.parseInt(data.split(" ")[1]);
+                    roleandlevel.add(new SkillAndLevel(skillName, skillLevel));
+                }
+                project.add(new Project(name, numberOfDays, scoreAward, bestBefore, roleandlevel));
+            }
 
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
