@@ -73,8 +73,32 @@ public class FileReader {
             ex.printStackTrace();
         }
     }
-    
+    ArrayList<Contributor> eligibleContribute = new ArrayList<Contributor>();
     private static void doneProject(){
-        
+        for (int i = 0; i < project.size(); i++) {
+            Project proj = project.get(i);
+            int rolesize= proj.getNumberOfRole();
+            ArrayList<SkillAndLevel> arrli=  proj.getSkillandlevel();
+            for (int j = 0; j < rolesize; j++) {
+                SkillAndLevel skillAndLevel = arrli.get(i);
+                String skill = skillAndLevel.getSkillName();
+                int level = skillAndLevel.getSkillLevel();
+                
+                
+                for (int k = 0; k < contributor.size(); k++) {
+                    Contributor contr = contributor.get(k);
+                    ArrayList<SkillAndLevel> arraylis = contr.getSkillandlevel();
+                    for (int l = 0; l < arraylis.size(); l++) {
+                        if (arraylis.get(l).getSkillName().equals(skill)) {
+                            if((arraylis.get(l).getSkillLevel() > level) && (arraylis.get(l).getSkillLevel() > level) ){
+                                
+                            }
+                        }
+                    }
+                }
+                
+                
+            }
+        }
     }
 }
