@@ -1,1 +1,1 @@
-# hashcode
+Google hashcode competition problem
